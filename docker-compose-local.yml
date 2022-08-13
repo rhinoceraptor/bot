@@ -1,0 +1,16 @@
+version: '3'
+services:
+  bot:
+    build: ./
+  synapse:
+    image: matrixdotorg/synapse:latest
+    container_name: synapse
+    volumes:
+      - "./synapse-data:/data"
+    environment:
+      VIRTUAL_HOST: "localhost"
+      VIRTUAL_PORT: 8008
+      SYNAPSE_SERVER_NAME: testserver
+      SYNAPSE_REPORT_STATS: "no"
+    ports:
+      - "8008:8008"
